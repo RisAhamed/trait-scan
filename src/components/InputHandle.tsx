@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { createSeed } from '@/lib/api';
 import { useToast } from '@/hooks/use-toast';
+import { trackEvent } from '@/lib/analytics';
 
 interface InputHandleProps {
   onSubmit?: (seedId: string) => void;
@@ -38,6 +39,15 @@ const InputHandle: React.FC<InputHandleProps> = ({ onSubmit }) => {
     return value.trim().replace(/\/$/, ''); // Remove trailing slash
   };
 
+  const checkPrivacyConsent = (): boolean => {
+    const privacySettings = localStorage.getItem('privacy_settings');
+    if (privacySettings) {
+      const settings = JSON.parse(privacySettings);
+      return settings.agreeToPublicDataAnalysis;
+    }
+    return false;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -50,15 +60,31 @@ const InputHandle: React.FC<InputHandleProps> = ({ onSubmit }) => {
       return;
     }
 
+    if (!checkPrivacyConsent()) {
+      toast({
+        title: "Privacy Consent Required",
+        description: "Please agree to public-data analysis in Privacy Settings before running scans.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsLoading(true);
+    trackEvent('seed_creation_started', { input: normalizeInput(input) });
     
     try {
       const normalizedInput = normalizeInput(input);
+      // TODO: Replace /api/mock/seed with real ${API_BASE}/api/seed call
       const response = await createSeed(normalizedInput);
       
       toast({
         title: "Analysis Started",
         description: `Seed created: ${response.seed_id}`,
+      });
+      
+      trackEvent('seed_created', { 
+        seedId: response.seed_id,
+        input: normalizedInput 
       });
       
       if (onSubmit) {
@@ -70,6 +96,7 @@ const InputHandle: React.FC<InputHandleProps> = ({ onSubmit }) => {
         description: "Failed to start analysis. Please try again.",
         variant: "destructive",
       });
+      trackEvent('seed_creation_failed', { input: normalizeInput(input) });
     } finally {
       setIsLoading(false);
     }
