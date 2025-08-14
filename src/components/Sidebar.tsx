@@ -37,9 +37,10 @@ const toolsItems = [
 ];
 
 export function AppSidebar() {
-  const { collapsed } = useSidebar();
+  const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
+  const collapsed = state === 'collapsed';
 
   const isActive = (path: string) => currentPath === path;
   const isExpanded = navigationItems.some((i) => isActive(i.url)) || toolsItems.some((i) => isActive(i.url));
@@ -52,10 +53,10 @@ export function AppSidebar() {
   return (
     <Sidebar
       className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300 border-r border-border`}
-      collapsible
+      collapsible="icon"
     >
       <SidebarContent className="px-3 py-4">
-        <SidebarGroup open={isExpanded}>
+        <SidebarGroup>
           <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
             Navigation
           </SidebarGroupLabel>
@@ -80,7 +81,7 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup open={isExpanded} className="mt-8">
+        <SidebarGroup className="mt-8">
           <SidebarGroupLabel className={collapsed ? "sr-only" : ""}>
             Tools
           </SidebarGroupLabel>

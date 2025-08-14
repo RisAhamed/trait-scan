@@ -1,6 +1,45 @@
-
 // Mock API base URL - replace with actual API URL in production
 const API_BASE = import.meta.env.VITE_API_BASE || '/api/mock';
+
+// Type definitions
+export interface PersonaTrait {
+  name: string;
+  score: number;
+  confidence: number;
+  evidence: string[];
+}
+
+export interface PersonaData {
+  traits: PersonaTrait[];
+  summary: string;
+  top_interests: string[];
+  sample_quotes: string[];
+}
+
+export interface IdentityAccount {
+  platform: string;
+  handle: string;
+  url: string;
+  confidence: number;
+  why: string[];
+  evidence: { text: string; url: string }[];
+}
+
+export interface Contradiction {
+  dimension: string;
+  delta: number;
+  a_snippet: string;
+  b_snippet: string;
+  sources: string[];
+}
+
+export interface SimilarAccount {
+  platform: string;
+  handle: string;
+  url: string;
+  similarity: number;
+  why: string;
+}
 
 // Utility function for API calls
 async function apiCall(endpoint: string, options: RequestInit = {}) {
@@ -94,7 +133,7 @@ export async function getSeedStatus(seedId: string) {
   }
 }
 
-export async function getPersonaData(seedId: string) {
+export async function getPersonaData(seedId: string): Promise<PersonaData> {
   try {
     return await apiCall(`/seed/${seedId}/persona`);
   } catch (error) {
