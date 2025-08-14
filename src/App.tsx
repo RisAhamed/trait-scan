@@ -34,7 +34,7 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <div className={isDark ? 'dark' : ''}>
-            <SidebarProvider collapsedWidth={64}>
+            <SidebarProvider>
               <div className="min-h-screen flex w-full bg-background text-foreground">
                 <AppSidebar />
                 
