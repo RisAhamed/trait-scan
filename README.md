@@ -1,73 +1,149 @@
-# Welcome to your Lovable project
 
-## Project info
+# AI Social Persona Finder
 
-**URL**: https://lovable.dev/projects/4852d311-831c-42ca-9a87-e716794d714f
+A comprehensive social media personality analysis platform that uses advanced AI to discover digital personas, behavioral patterns, and connected identities across platforms.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- **Profile Analysis**: Analyze personality traits from social media profiles and usernames
+- **File Upload**: Upload documents or paste text content for personality analysis
+- **Comprehensive Reports**: Detailed personality profiles with Big Five traits, interests, and behavioral patterns
+- **Identity Matching**: Find connected accounts across platforms with confidence scoring
+- **Visual Analytics**: Interactive charts and data visualizations
+- **Privacy First**: Secure processing with full control over data retention
 
-**Use Lovable**
+## Getting Started
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/4852d311-831c-42ca-9a87-e716794d714f) and start prompting.
+### Prerequisites
 
-Changes made via Lovable will be committed automatically to this repo.
+- Node.js 18+ and npm
+- Modern web browser with JavaScript enabled
 
-**Use your preferred IDE**
+### Installation
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
+1. Clone the repository:
+```bash
 git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
+```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. Install dependencies:
+```bash
+npm install
+```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open [http://localhost:8080](http://localhost:8080) in your browser.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Usage
 
-**Use GitHub Codespaces**
+### Quick Analysis
+1. Visit the homepage and use the "Try Quick Analysis" feature
+2. Enter a username or profile URL
+3. Wait for AI processing to complete
+4. View comprehensive personality insights
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### File Upload Analysis
+1. Navigate to `/upload`
+2. Choose between profile analysis or file upload
+3. Upload supported files (PDF, DOCX, TXT) or paste text content
+4. Receive detailed personality analysis
 
-## What technologies are used for this project?
+### Managing Personas
+- View saved personas at `/personas`
+- Search and filter personas at `/search`
+- Access detailed analytics and reports
 
-This project is built with:
+## Mock Data
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+The application includes comprehensive mock data for development and testing:
 
-## How can I deploy this project?
+- **Sample personas** with realistic personality traits and confidence scores
+- **Identity matching** examples across multiple platforms
+- **Contradiction analysis** showing behavioral differences across platforms
+- **Similar account suggestions** with similarity scoring
 
-Simply open [Lovable](https://lovable.dev/projects/4852d311-831c-42ca-9a87-e716794d714f) and click on Share -> Publish.
+## API Integration
 
-## Can I connect a custom domain to my Lovable project?
+The app is designed to integrate with backend APIs but includes mock responses for development:
 
-Yes, you can!
+### Environment Variables
+- `NEXT_PUBLIC_API_BASE`: Base URL for API endpoints (defaults to `/api/mock`)
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Key Endpoints
+- `POST /api/seed` - Create new analysis
+- `GET /api/seed/{seedId}/persona` - Get personality data
+- `GET /api/seed/{seedId}/identity` - Get identity matches
+- `GET /api/seed/{seedId}/contradictions` - Get behavioral contradictions
+- `POST /api/report/{seedId}` - Generate downloadable report
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Technology Stack
+
+- **Frontend**: React 18 + TypeScript
+- **Styling**: Tailwind CSS with custom design system
+- **UI Components**: shadcn/ui components
+- **State Management**: TanStack Query
+- **Routing**: React Router v6
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+## Design System
+
+The application uses a comprehensive design system with:
+
+- **Colors**: Slate/Indigo/Cyan professional palette
+- **Typography**: Inter font family with semantic scaling
+- **Components**: Consistent button variants, cards, and form elements
+- **Animations**: Subtle transitions and micro-interactions
+- **Responsive**: Mobile-first design with collapsible sidebar
+
+## Development
+
+### Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run lint` - Run ESLint
+
+### File Structure
+
+```
+src/
+├── components/           # Reusable UI components
+├── pages/               # Page components and routes
+├── lib/                 # Utilities and API functions
+├── hooks/               # Custom React hooks
+├── mock-data/           # Sample data for development
+└── index.css           # Global styles and design system
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## Privacy & Security
+
+- All analysis is performed with user consent
+- Data retention settings are user-controlled
+- No personal information is stored without explicit permission
+- Secure processing of uploaded content
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Support
+
+For support and questions:
+- Check the `/demo` page for examples
+- Visit `/settings` for configuration options
+- Review the mock data in `src/mock-data/` for expected formats

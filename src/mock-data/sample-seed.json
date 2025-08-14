@@ -1,0 +1,176 @@
+
+{
+  "seed_id": "s_demo_123",
+  "status": "done",
+  "persona": {
+    "traits": [
+      {
+        "name": "Openness",
+        "score": 0.81,
+        "confidence": 0.75,
+        "evidence": [
+          "Frequently discusses new ideas and creative projects",
+          "Shows interest in diverse topics from AI to art",
+          "Demonstrates curiosity about different cultures and experiences"
+        ]
+      },
+      {
+        "name": "Conscientiousness", 
+        "score": 0.67,
+        "confidence": 0.82,
+        "evidence": [
+          "Shows organized approach to project management",
+          "Consistently meets deadlines and commitments",
+          "Demonstrates attention to detail in professional communications"
+        ]
+      },
+      {
+        "name": "Extraversion",
+        "score": 0.73,
+        "confidence": 0.68,
+        "evidence": [
+          "Active participation in online discussions",
+          "Frequent social media interactions and engagement",
+          "Comfortable with public speaking and presentations"
+        ]
+      },
+      {
+        "name": "Agreeableness",
+        "score": 0.59,
+        "confidence": 0.71,
+        "evidence": [
+          "Balanced approach to disagreements and conflicts",
+          "Shows empathy but maintains personal boundaries",
+          "Collaborative but willing to challenge ideas constructively"
+        ]
+      },
+      {
+        "name": "Neuroticism",
+        "score": 0.34,
+        "confidence": 0.77,
+        "evidence": [
+          "Generally stable emotional responses to stress",
+          "Maintains optimistic outlook during challenges",
+          "Demonstrates resilience in professional setbacks"
+        ]
+      }
+    ],
+    "summary": "Creative and curious individual with strong organizational skills and active social engagement. Shows high openness to new experiences combined with reliable execution of commitments. Maintains emotional stability while being socially engaged and moderately cooperative.",
+    "top_interests": [
+      "artificial intelligence", 
+      "digital marketing", 
+      "photography", 
+      "startup ecosystem", 
+      "ux design",
+      "sustainability",
+      "travel",
+      "blockchain technology"
+    ],
+    "sample_quotes": [
+      "I love exploring how AI can augment human creativity rather than replace it.",
+      "The best designs come from understanding user behavior and psychology.",
+      "Building sustainable products isn't just good for the planet, it's good business.",
+      "Every failed startup teaches you something valuable about product-market fit."
+    ]
+  },
+  "identity": {
+    "accounts": [
+      {
+        "platform": "Twitter",
+        "handle": "@sarahchen_ux",
+        "url": "https://twitter.com/sarahchen_ux",
+        "confidence": 0.87,
+        "why": [
+          "Writing style and vocabulary match strongly",
+          "Similar professional interests and topics",
+          "Timeline and posting patterns align",
+          "Network connections show overlap"
+        ],
+        "evidence": [
+          {
+            "text": "Just wrapped up a fascinating user research session. The insights about how people interact with AI interfaces are mind-blowing 🤖✨",
+            "url": "https://twitter.com/sarahchen_ux/status/1234567890"
+          },
+          {
+            "text": "Sustainable design isn't just a trend - it's the future. Excited to share our new eco-friendly UX framework at #DesignConf2024",
+            "url": "https://twitter.com/sarahchen_ux/status/1234567891"
+          }
+        ]
+      },
+      {
+        "platform": "LinkedIn",
+        "handle": "sarah-chen-ux-designer",
+        "url": "https://linkedin.com/in/sarah-chen-ux-designer",
+        "confidence": 0.92,
+        "why": [
+          "Professional background matches perfectly",
+          "Skills and endorsements align with personality traits",
+          "Content style and expertise topics match",
+          "Network connections show significant overlap"
+        ],
+        "evidence": [
+          {
+            "text": "Thrilled to announce that our startup just closed Series A! Building products that solve real problems while being environmentally conscious has been our north star.",
+            "url": "https://linkedin.com/in/sarah-chen-ux-designer/post/activity-7123456789"
+          }
+        ]
+      },
+      {
+        "platform": "Medium",
+        "handle": "@sarahchen.design",
+        "url": "https://medium.com/@sarahchen.design",
+        "confidence": 0.78,
+        "why": [
+          "Long-form writing style matches personality analysis",
+          "Topic expertise aligns with identified interests",
+          "Publication frequency and quality indicate conscientiousness"
+        ],
+        "evidence": [
+          {
+            "text": "The intersection of AI and human-centered design is where the magic happens. In my latest article, I explore how we can build AI systems that amplify human creativity...",
+            "url": "https://medium.com/@sarahchen.design/ai-human-centered-design-future"
+          }
+        ]
+      }
+    ]
+  },
+  "contradictions": [
+    {
+      "dimension": "Formality Level",
+      "delta": 0.45,
+      "a_snippet": "Excited to present our Q3 results to the board. Revenue growth exceeded projections by 23%, and customer satisfaction scores are at an all-time high.",
+      "b_snippet": "omg just spilled coffee all over my presentation slides 😅 anyone know how to remove coffee stains from a MacBook screen? asking for a friend... 🙃",
+      "sources": ["LinkedIn", "Twitter"]
+    },
+    {
+      "dimension": "Risk Tolerance",
+      "delta": 0.32,
+      "a_snippet": "Taking calculated risks is essential for innovation. Our decision to pivot the product strategy last quarter was based on extensive market research and user feedback.",
+      "b_snippet": "YOLO just bought crypto at 3am because a friend's cousin said it's going to the moon 🚀💎🙌",
+      "sources": ["Medium", "Reddit"]
+    }
+  ],
+  "similar": [
+    {
+      "platform": "Twitter",
+      "handle": "@designguru_alex",
+      "url": "https://twitter.com/designguru_alex",
+      "similarity": 0.83,
+      "why": "Similar UX design interests, comparable personality traits (high openness, conscientiousness), and overlapping professional network"
+    },
+    {
+      "platform": "LinkedIn", 
+      "handle": "michael-wong-product-manager",
+      "url": "https://linkedin.com/in/michael-wong-product-manager",
+      "similarity": 0.76,
+      "why": "Shared startup ecosystem involvement, similar communication style, and complementary skill sets in product development"
+    },
+    {
+      "platform": "Medium",
+      "handle": "@techwriter_jane",
+      "url": "https://medium.com/@techwriter_jane",
+      "similarity": 0.71,
+      "why": "Similar writing style and depth, shared interests in AI and technology ethics, comparable engagement with sustainability topics"
+    }
+  ]
+}
