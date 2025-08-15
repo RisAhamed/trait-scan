@@ -23,7 +23,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>AI Social Persona Finder - Know Anyone. Instantly.</title>
+        <title>Know Anyone. Instantly. - AI Social Persona Finder</title>
         <meta 
           name="description" 
           content="Enter a public handle and get a cross-platform persona summary, evidence-backed insights, and 'look-alike' matches. Powered by advanced AI analysis." 
@@ -31,7 +31,7 @@ const Index = () => {
         <meta name="keywords" content="social media analysis, personality insights, AI persona finder, cross-platform analysis" />
         
         {/* Open Graph tags */}
-        <meta property="og:title" content="AI Social Persona Finder - Know Anyone. Instantly." />
+        <meta property="og:title" content="Know Anyone. Instantly. - AI Social Persona Finder" />
         <meta property="og:description" content="Enter a public handle and get a cross-platform persona summary, evidence-backed insights, and 'look-alike' matches." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={window.location.href} />
@@ -39,7 +39,7 @@ const Index = () => {
         
         {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="AI Social Persona Finder - Know Anyone. Instantly." />
+        <meta name="twitter:title" content="Know Anyone. Instantly. - AI Social Persona Finder" />
         <meta name="twitter:description" content="Advanced AI-powered social media persona analysis across platforms." />
         <meta name="twitter:image" content="/placeholder.svg" />
       </Helmet>
