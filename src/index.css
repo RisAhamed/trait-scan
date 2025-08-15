@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -82,10 +83,10 @@
     line-height: 1.5;
   }
   
-  /* Updated Typography Scale */
+  /* Typography Scale */
   h1 {
-    @apply text-5xl font-bold tracking-tight;
-    font-size: 40px;
+    @apply text-4xl font-bold tracking-tight;
+    font-size: 36px;
     font-weight: 700;
   }
   
@@ -104,7 +105,6 @@
   p {
     @apply text-base leading-relaxed;
     font-size: 16px;
-    font-weight: 400;
   }
   
   .text-ui-small {
@@ -114,25 +114,6 @@
 }
 
 @layer components {
-  /* Glassmorphism Card Styles */
-  .card-glass {
-    @apply backdrop-blur-xl border rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)];
-    background: hsl(var(--background) / 0.6);
-    border-color: hsl(var(--border) / 0.2);
-  }
-
-  .card-glass.dark {
-    background: hsl(var(--surface-dark) / 0.4);
-    border-color: hsl(var(--border) / 0.2);
-  }
-
-  /* Brand Gradient Button */
-  .btn-gradient {
-    @apply bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 text-white;
-    @apply px-6 py-3 rounded-2xl font-medium transition-all duration-200;
-    @apply shadow-sm hover:shadow hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent/50;
-  }
-
   /* Button Variants */
   .btn-primary {
     @apply bg-accent text-accent-foreground hover:bg-accent/90 active:bg-accent/80;
@@ -163,22 +144,20 @@
     @apply shadow-sm hover:shadow focus:outline-none focus:ring-2 focus:ring-danger/50;
   }
   
-  /* Card Styles with Glassmorphism */
+  /* Card Styles */
   .card-surface {
-    @apply backdrop-blur-xl border border-border/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)];
-    background: hsl(var(--background) / 0.6);
+    @apply bg-card border border-border rounded-2xl shadow-sm;
   }
   
   .card-hover {
     @apply card-surface hover:shadow-md transition-all duration-200 cursor-pointer;
   }
   
-  /* Input Styles with Glass Effect */
+  /* Input Styles */
   .input-field {
-    @apply backdrop-blur-xl border border-input/20 rounded-lg px-4 py-3;
+    @apply bg-background border border-input rounded-lg px-4 py-3;
     @apply focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent;
     @apply transition-all duration-200 placeholder:text-muted-foreground;
-    background: hsl(var(--background) / 0.6);
   }
   
   /* Confidence Badge */
