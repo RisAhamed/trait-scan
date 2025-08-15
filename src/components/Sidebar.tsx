@@ -9,8 +9,7 @@ import {
   PlayCircle,
   BarChart3,
   FileText,
-  Crown,
-  CreditCard
+  Heart
 } from 'lucide-react';
 import {
   Sidebar,
@@ -23,8 +22,6 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { usePlan } from '@/lib/plan';
-import UsageMeter from '@/components/UsageMeter';
 
 const navigationItems = [
   { title: 'Upload & Analyze', url: '/upload', icon: Upload },
@@ -37,17 +34,16 @@ const toolsItems = [
   { title: 'Analytics', url: '/analytics', icon: BarChart3 },
   { title: 'Reports', url: '/reports', icon: FileText },
   { title: 'Settings', url: '/settings', icon: Settings },
-  { title: 'Pricing', url: '/pricing', icon: CreditCard },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  const { isPro } = usePlan();
   const location = useLocation();
   const currentPath = location.pathname;
   const collapsed = state === 'collapsed';
 
   const isActive = (path: string) => currentPath === path;
+  const isExpanded = navigationItems.some((i) => isActive(i.url)) || toolsItems.some((i) => isActive(i.url));
 
   const getNavClasses = ({ isActive }: { isActive: boolean }) =>
     isActive 
@@ -111,26 +107,16 @@ export function AppSidebar() {
         </SidebarGroup>
 
         {!collapsed && (
-          <div className="mt-auto pt-8 space-y-4">
-            {/* Usage meter for free users */}
-            {!isPro && (
-              <UsageMeter used={3} limit={5} />
-            )}
-
-            {/* Upgrade CTA */}
-            {!isPro && (
-              <div className="backdrop-blur-xl bg-gradient-to-br from-indigo-50/90 via-violet-50/90 to-cyan-50/90 dark:from-indigo-950/40 dark:via-violet-950/40 dark:to-cyan-950/40 border border-indigo-200/50 dark:border-indigo-800/50 p-4 text-center rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)]">
-                <Crown className="h-8 w-8 text-indigo-600 dark:text-indigo-400 mx-auto mb-2" />
-                <p className="text-sm text-muted-foreground mb-2">
-                  Unlock unlimited scans
-                </p>
-                <NavLink to="/pricing">
-                  <button className="w-full text-sm py-2 px-4 bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 hover:from-indigo-600 hover:via-violet-600 hover:to-cyan-600 text-white rounded-lg border-0 font-medium">
-                    Upgrade to Pro
-                  </button>
-                </NavLink>
-              </div>
-            )}
+          <div className="mt-auto pt-8">
+            <div className="card-surface p-4 text-center">
+              <Heart className="h-8 w-8 text-accent mx-auto mb-2" />
+              <p className="text-sm text-muted-foreground mb-2">
+                Enjoying the insights?
+              </p>
+              <button className="btn-primary w-full text-sm py-2">
+                Upgrade to Pro
+              </button>
+            </div>
           </div>
         )}
       </SidebarContent>

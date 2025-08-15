@@ -1,30 +1,25 @@
 
 import React, { useState } from 'react';
-import { Search, Moon, Sun, User, HelpCircle, Crown } from 'lucide-react';
+import { Search, Moon, Sun, User, Menu, HelpCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Badge } from '@/components/ui/badge';
-import { usePlan } from '@/lib/plan';
-import { useNavigate } from 'react-router-dom';
 import OnboardingModal from '@/components/OnboardingModal';
 
 interface HeaderProps {
+  onMenuToggle?: () => void;
   onThemeToggle?: () => void;
   isDark?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
+const Header: React.FC<HeaderProps> = ({ onMenuToggle, onThemeToggle, isDark = false }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showOnboarding, setShowOnboarding] = useState(false);
-  const { plan, setPlan, isPro } = usePlan();
-  const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,18 +31,24 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
     setShowOnboarding(true);
   };
 
-  const togglePlan = () => {
-    setPlan(isPro ? 'free' : 'pro');
-  };
-
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-border backdrop-blur-xl bg-background/90 supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           {/* Left section */}
           <div className="flex items-center gap-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={onMenuToggle}
+              className="md:hidden"
+              aria-label="Toggle sidebar menu"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+            
             <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-indigo-500 via-violet-500 to-cyan-500 flex items-center justify-center">
+              <div className="h-8 w-8 rounded-full bg-gradient-to-br from-accent to-secondary flex items-center justify-center">
                 <span className="text-white font-bold text-sm">AI</span>
               </div>
               <div className="hidden sm:block">
@@ -66,7 +67,7 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
                 placeholder="Search personas, traits, or platforms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="pl-10 input-field"
                 aria-label="Global search"
               />
             </form>
@@ -74,27 +75,6 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
 
           {/* Right section */}
           <div className="flex items-center gap-2">
-            {/* Plan Badge & Dev Toggle */}
-            <div className="flex items-center gap-2">
-              <Badge 
-                variant={isPro ? "default" : "outline"}
-                className={isPro ? "bg-gradient-to-r from-indigo-500 via-violet-500 to-cyan-500 text-white border-0" : ""}
-              >
-                {isPro && <Crown className="h-3 w-3 mr-1" />}
-                {plan.toUpperCase()}
-              </Badge>
-              
-              {/* Dev-only plan toggle */}
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={togglePlan}
-                className="text-xs hidden md:flex"
-              >
-                Switch to {isPro ? 'Free' : 'Pro'}
-              </Button>
-            </div>
-
             <Button
               variant="ghost"
               size="icon"
@@ -121,16 +101,17 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">
-                <DropdownMenuItem onClick={() => navigate('/settings')}>
+                <DropdownMenuItem>
                   <User className="mr-2 h-4 w-4" />
+                  Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem>
                   Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/pricing')}>
-                  <Crown className="mr-2 h-4 w-4" />
-                  Pricing
+                <DropdownMenuItem>
+                  Billing
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem className="text-red-600">
+                <DropdownMenuItem className="text-danger">
                   Sign out
                 </DropdownMenuItem>
               </DropdownMenuContent>
