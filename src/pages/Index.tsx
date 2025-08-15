@@ -3,10 +3,14 @@ import React, { useState, useEffect } from 'react';
 import Hero from '@/components/Hero';
 import OnboardingModal from '@/components/OnboardingModal';
 import PrivacyBanner from '@/components/PrivacyBanner';
+import PaywallDialog from '@/components/PaywallDialog';
 import { Helmet } from 'react-helmet-async';
+import { usePlan } from '@/lib/plan';
 
 const Index = () => {
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const [showPaywall, setShowPaywall] = useState(false);
+  const { isPro } = usePlan();
 
   useEffect(() => {
     // Check if user has completed onboarding
@@ -19,6 +23,15 @@ const Index = () => {
       return () => clearTimeout(timer);
     }
   }, []);
+
+  // Demo function to show paywall
+  const handleFeatureClick = (feature: string) => {
+    if (!isPro) {
+      setShowPaywall(true);
+    } else {
+      console.log(`Accessing ${feature} feature`);
+    }
+  };
 
   return (
     <>
@@ -45,11 +58,17 @@ const Index = () => {
       </Helmet>
       
       <div className="min-h-screen bg-background">
-        <Hero />
+        <Hero onFeatureClick={handleFeatureClick} />
         
         <OnboardingModal 
           isOpen={showOnboarding}
           onClose={() => setShowOnboarding(false)}
+        />
+
+        <PaywallDialog
+          isOpen={showPaywall}
+          onClose={() => setShowPaywall(false)}
+          feature="Advanced Analysis"
         />
         
         <PrivacyBanner />

@@ -9,7 +9,8 @@ import {
   PlayCircle,
   BarChart3,
   FileText,
-  Heart
+  Crown,
+  CreditCard
 } from 'lucide-react';
 import {
   Sidebar,
@@ -20,8 +21,12 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { usePlan } from '@/lib/plan';
+import UsageMeter from '@/components/UsageMeter';
+import { Button } from '@/components/ui/button';
 
 const navigationItems = [
   { title: 'Upload & Analyze', url: '/upload', icon: Upload },
@@ -34,16 +39,17 @@ const toolsItems = [
   { title: 'Analytics', url: '/analytics', icon: BarChart3 },
   { title: 'Reports', url: '/reports', icon: FileText },
   { title: 'Settings', url: '/settings', icon: Settings },
+  { title: 'Pricing', url: '/pricing', icon: CreditCard },
 ];
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
+  const { isPro } = usePlan();
   const currentPath = location.pathname;
   const collapsed = state === 'collapsed';
 
   const isActive = (path: string) => currentPath === path;
-  const isExpanded = navigationItems.some((i) => isActive(i.url)) || toolsItems.some((i) => isActive(i.url));
 
   const getNavClasses = ({ isActive }: { isActive: boolean }) =>
     isActive 
@@ -52,7 +58,7 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300 border-r border-border`}
+      className={`${collapsed ? "w-16" : "w-64"} transition-all duration-300 border-r border-border backdrop-blur-xl bg-background/95`}
       collapsible="icon"
     >
       <SidebarContent className="px-3 py-4">
@@ -105,21 +111,30 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
-        {!collapsed && (
-          <div className="mt-auto pt-8">
-            <div className="card-surface p-4 text-center">
-              <Heart className="h-8 w-8 text-accent mx-auto mb-2" />
-              <p className="text-sm text-muted-foreground mb-2">
-                Enjoying the insights?
-              </p>
-              <button className="btn-primary w-full text-sm py-2">
-                Upgrade to Pro
-              </button>
-            </div>
-          </div>
-        )}
       </SidebarContent>
+
+      {!collapsed && (
+        <SidebarFooter className="p-4 space-y-4">
+          {/* Usage meter for free users */}
+          {!isPro && (
+            <UsageMeter used={3} limit={5} />
+          )}
+
+          {/* Upgrade prompt */}
+          <div className="backdrop-blur-xl bg-background/60 border border-border/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] p-4 text-center">
+            <Crown className={`h-8 w-8 mx-auto mb-2 ${isPro ? 'text-accent' : 'text-muted-foreground'}`} />
+            <p className="text-sm text-muted-foreground mb-2">
+              {isPro ? 'You have Pro!' : 'Enjoying the insights?'}
+            </p>
+            <Button 
+              className={`w-full text-sm py-2 ${isPro ? 'bg-accent text-accent-foreground' : 'bg-gradient-to-r from-accent via-secondary to-primary text-white hover:opacity-90'}`}
+              onClick={() => window.location.href = '/pricing'}
+            >
+              {isPro ? 'Manage Plan' : 'Upgrade to Pro'}
+            </Button>
+          </div>
+        </SidebarFooter>
+      )}
     </Sidebar>
   );
 }

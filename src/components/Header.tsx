@@ -1,46 +1,54 @@
 
 import React, { useState } from 'react';
-import { Search, Moon, Sun, User, Menu, HelpCircle } from 'lucide-react';
+import { Search, Moon, Sun, User, Menu, HelpCircle, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useSidebar } from '@/components/ui/sidebar';
+import { usePlan } from '@/lib/plan';
 import OnboardingModal from '@/components/OnboardingModal';
 
 interface HeaderProps {
-  onMenuToggle?: () => void;
   onThemeToggle?: () => void;
   isDark?: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ onMenuToggle, onThemeToggle, isDark = false }) => {
+const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showOnboarding, setShowOnboarding] = useState(false);
+  const { toggleSidebar } = useSidebar();
+  const { plan, setPlan, isPro } = usePlan();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Search:', searchQuery);
-    // TODO: Implement global search functionality
   };
 
   const handleStartTour = () => {
     setShowOnboarding(true);
   };
 
+  const togglePlan = () => {
+    setPlan(isPro ? 'free' : 'pro');
+  };
+
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border backdrop-blur-xl bg-background/95 supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between px-4">
           {/* Left section */}
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="icon"
-              onClick={onMenuToggle}
+              onClick={toggleSidebar}
               className="md:hidden"
               aria-label="Toggle sidebar menu"
             >
@@ -67,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle, onThemeToggle, isDark = f
                 placeholder="Search personas, traits, or platforms..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 input-field"
+                className="pl-10 backdrop-blur-xl bg-background/60 border border-border/20"
                 aria-label="Global search"
               />
             </form>
@@ -75,6 +83,25 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle, onThemeToggle, isDark = f
 
           {/* Right section */}
           <div className="flex items-center gap-2">
+            {/* Plan Badge & Dev Switcher */}
+            <Badge 
+              variant={isPro ? "default" : "secondary"} 
+              className={`hidden sm:flex items-center gap-1 ${isPro ? 'bg-gradient-to-r from-accent via-secondary to-primary text-white' : ''}`}
+            >
+              {isPro && <Crown className="h-3 w-3" />}
+              {isPro ? 'Pro' : 'Free'}
+            </Badge>
+
+            {/* Dev-only plan switcher */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={togglePlan}
+              className="hidden md:flex text-xs"
+            >
+              Switch to {isPro ? 'Free' : 'Pro'}
+            </Button>
+
             <Button
               variant="ghost"
               size="icon"
@@ -105,13 +132,15 @@ const Header: React.FC<HeaderProps> = ({ onMenuToggle, onThemeToggle, isDark = f
                   <User className="mr-2 h-4 w-4" />
                   Profile
                 </DropdownMenuItem>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={() => window.location.href = '/settings'}>
                   Settings
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  Billing
+                <DropdownMenuItem onClick={() => window.location.href = '/pricing'}>
+                  <Crown className="mr-2 h-4 w-4" />
+                  {isPro ? 'Manage Plan' : 'Upgrade to Pro'}
                 </DropdownMenuItem>
-                <DropdownMenuItem className="text-danger">
+                <DropdownMenuSeparator />
+                <DropdownMenuItem className="text-red-600">
                   Sign out
                 </DropdownMenuItem>
               </DropdownMenuContent>
