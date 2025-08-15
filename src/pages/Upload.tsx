@@ -48,7 +48,7 @@ const UploadPage = () => {
         </TabsList>
 
         <TabsContent value="profile" className="space-y-6">
-          <Card className="card-surface">
+          <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)]">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center gap-2">
                 <Link className="h-5 w-5 text-accent" />
@@ -64,7 +64,7 @@ const UploadPage = () => {
           </Card>
 
           <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <Card className="card-surface text-center p-6">
+            <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] text-center p-6">
               <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-accent font-bold">1</span>
               </div>
@@ -74,7 +74,7 @@ const UploadPage = () => {
               </p>
             </Card>
 
-            <Card className="card-surface text-center p-6">
+            <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] text-center p-6">
               <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-secondary font-bold">2</span>
               </div>
@@ -84,9 +84,9 @@ const UploadPage = () => {
               </p>
             </Card>
 
-            <Card className="card-surface text-center p-6">
-              <div className="w-12 h-12 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-success font-bold">3</span>
+            <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] text-center p-6">
+              <div className="w-12 h-12 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-green-600 font-bold">3</span>
               </div>
               <h3 className="font-semibold mb-2">Get Insights</h3>
               <p className="text-sm text-muted-foreground">
@@ -97,7 +97,7 @@ const UploadPage = () => {
         </TabsContent>
 
         <TabsContent value="upload" className="space-y-6">
-          <Card className="card-surface">
+          <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)]">
             <CardHeader className="text-center">
               <CardTitle className="flex items-center justify-center gap-2">
                 <FileText className="h-5 w-5 text-accent" />
@@ -113,7 +113,7 @@ const UploadPage = () => {
           </Card>
 
           <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <Card className="card-surface p-6">
+            <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] p-6">
               <h3 className="font-semibold mb-3 flex items-center gap-2">
                 <FileText className="h-5 w-5 text-accent" />
                 Supported Formats
@@ -126,7 +126,7 @@ const UploadPage = () => {
               </ul>
             </Card>
 
-            <Card className="card-surface p-6">
+            <Card className="backdrop-blur-xl bg-white/60 dark:bg-slate-900/40 border border-white/20 rounded-2xl shadow-[0_6px_30px_-12px_rgba(0,0,0,.25)] p-6">
               <h3 className="font-semibold mb-3 flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-secondary" />
                 Best Results

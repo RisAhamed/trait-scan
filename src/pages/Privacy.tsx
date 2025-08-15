@@ -86,7 +86,7 @@ const Privacy = () => {
                 <div className="space-y-1">
                   <p className="font-medium">
                     Agree to public-data analysis 
-                    <span className="text-danger text-sm ml-2">*Required</span>
+                    <span className="text-red-500 text-sm ml-2">*Required</span>
                   </p>
                   <p className="text-sm text-muted-foreground">
                     Allow analysis of publicly available social media data
@@ -163,7 +163,7 @@ const Privacy = () => {
 
         {/* Notice */}
         {!settings.agreeToPublicDataAnalysis && (
-          <Card className="card-surface border-warning/20 bg-warning/5">
+          <Card className="card-surface border-yellow-200/50 bg-yellow-50/60 dark:border-yellow-800/50 dark:bg-yellow-950/40">
             <CardContent className="pt-6">
               <p className="text-sm text-center text-muted-foreground">
                 <strong>Note:</strong> You must agree to public-data analysis to run persona scans and access demo features.
