@@ -1,4 +1,4 @@
-
+// src/components/PrivacyBanner.tsx
 import React, { useState, useEffect } from 'react';
 import { X, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -21,7 +21,8 @@ const PrivacyBanner = () => {
   };
 
   const handleManagePreferences = () => {
-    navigate('/settings/privacy');
+    // FIX: Changed from `/settings/privacy` to `/settings`
+    navigate('/settings');
     handleDismiss();
   };
 

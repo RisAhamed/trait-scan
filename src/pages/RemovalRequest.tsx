@@ -1,4 +1,4 @@
-
+// src/pages/RemovalRequest.tsx
 import React, { useState } from 'react';
 import { AlertTriangle, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -25,19 +25,16 @@ const RemovalRequest = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with real API call to ${API_BASE}/api/remove-request
-      const response = await fetch('/api/mock/remove-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      });
+      // NOTE: This remains a mock API call
+      const response = await new Promise<{ ticket_id: string }>(resolve =>
+        setTimeout(() => resolve({ ticket_id: `TICKET-${Date.now()}` }), 1000)
+      );
 
-      const result = await response.json();
-      setTicketId(result.ticket_id);
+      setTicketId(response.ticket_id);
 
       toast({
         title: "Removal Request Submitted",
-        description: `Your request has been received. Ticket ID: ${result.ticket_id}`,
+        description: `Your request has been received. Ticket ID: ${response.ticket_id}`,
       });
     } catch (error) {
       toast({
@@ -74,7 +71,7 @@ const RemovalRequest = () => {
                 </p>
               </div>
             </div>
-            <Button onClick={() => window.close()}>
+            <Button onClick={() => window.location.href = '/'}>
               Close
             </Button>
           </CardContent>
@@ -110,7 +107,7 @@ const RemovalRequest = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-sm font-medium">
-                  Profile URL <span className="text-danger">*</span>
+                  Profile URL <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="url"
@@ -123,12 +120,12 @@ const RemovalRequest = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">
-                  Reason for Removal <span className="text-danger">*</span>
+                  Reason for Removal <span className="text-red-500">*</span>
                 </label>
                 <Select
                   value={formData.reason}
                   onValueChange={(value) => handleInputChange('reason', value)}
-                  required
+                  
                 >
                   <SelectTrigger>
                     <SelectValue placeholder="Select a reason" />
@@ -155,7 +152,7 @@ const RemovalRequest = () => {
 
               <div className="space-y-2">
                 <label className="text-sm font-medium">
-                  Contact Email <span className="text-danger">*</span>
+                  Contact Email <span className="text-red-500">*</span>
                 </label>
                 <Input
                   type="email"
@@ -187,16 +184,6 @@ const RemovalRequest = () => {
                 {isSubmitting ? 'Submitting...' : 'Submit Removal Request'}
               </Button>
             </form>
-          </CardContent>
-        </Card>
-
-        {/* Legal Notice */}
-        <Card className="card-surface border-muted">
-          <CardContent className="pt-6">
-            <p className="text-sm text-muted-foreground">
-              <strong>Processing Time:</strong> Removal requests are typically processed within 30 business days. 
-              You will receive an email confirmation once your data has been removed from our systems.
-            </p>
           </CardContent>
         </Card>
       </div>
