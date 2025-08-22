@@ -1,4 +1,3 @@
-
 // C:/Users/riswa/Desktop/app/AI Persona Finder/trait-scan/src/App.tsx
 import React, { useState, useEffect } from 'react';
 import { Toaster } from "@/components/ui/toaster";

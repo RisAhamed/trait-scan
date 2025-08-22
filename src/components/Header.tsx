@@ -2,7 +2,7 @@
 import React from  'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
-  Moon, Sun, Menu, HelpCircle, Crown, Settings,
+  Moon, Sun, Menu, HelpCircle,
 } from 'lucide-react';
 import {
   SignedIn,
@@ -13,7 +13,6 @@ import {
 } from '@clerk/clerk-react';
 import { Button } from '@/components/ui/button';
 import { useSidebar } from '@/components/ui/sidebar';
-import { usePlan } from '@/lib/plan';
 import OnboardingModal from '@/components/OnboardingModal';
 
 interface HeaderProps {
@@ -24,8 +23,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
   const [showOnboarding, setShowOnboarding] = React.useState(false);
   const { toggleSidebar } = useSidebar();
-  const { isPro } = usePlan();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -98,4 +95,3 @@ const Header: React.FC<HeaderProps> = ({ onThemeToggle, isDark = false }) => {
 };
 
 export default Header;
-
